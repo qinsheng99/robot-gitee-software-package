@@ -16,10 +16,10 @@ const (
 type SoftwarePkgPRDO struct {
 	// must set "uuid" as the name of column
 	PkgId     uuid.UUID `gorm:"column:uuid;type:uuid"`
-	Num       int       `gorm:"column:num"`
 	Link      string    `gorm:"column:link"`
-	Merge     int       `gorm:"column:merge"`
 	PkgName   string    `gorm:"column:pkg_name"`
+	Num       int       `gorm:"column:num"`
+	Merge     int       `gorm:"column:merge"`
 	CreatedAt int64     `gorm:"column:created_at"`
 	UpdatedAt int64     `gorm:"column:updated_at"`
 }
