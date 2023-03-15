@@ -52,11 +52,11 @@ func (s softwarePkgPR) Find(num int) (domain.PullRequest, error) {
 func (s softwarePkgPR) FindAll(isMerged bool) ([]domain.PullRequest, error) {
 	filter := SoftwarePkgPRDO{}
 	if isMerged {
-		filter.Merge = mergeStatus
+		filter.Merged = mergedStatus
 	} else {
-		filter.Merge = unMergeStatus
+		filter.Merged = unMergedStatus
 	}
-	
+
 	var res []SoftwarePkgPRDO
 
 	if err := s.cli.GetRecords(

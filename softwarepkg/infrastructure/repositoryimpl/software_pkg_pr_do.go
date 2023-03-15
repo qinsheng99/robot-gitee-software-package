@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	mergeStatus   = 1
-	unMergeStatus = 2
+	mergedStatus   = 1
+	unMergedStatus = 2
 )
 
 type SoftwarePkgPRDO struct {
@@ -19,7 +19,7 @@ type SoftwarePkgPRDO struct {
 	Link      string    `gorm:"column:link"`
 	PkgName   string    `gorm:"column:pkg_name"`
 	Num       int       `gorm:"column:num"`
-	Merge     int       `gorm:"column:merge"`
+	Merged    int       `gorm:"column:merge"`
 	CreatedAt int64     `gorm:"column:created_at"`
 	UpdatedAt int64     `gorm:"column:updated_at"`
 }
@@ -35,9 +35,9 @@ func (s softwarePkgPR) toSoftwarePkgPRDO(p *domain.PullRequest, id uuid.UUID, do
 	}
 
 	if p.IsMerged() {
-		do.Merge = mergeStatus
+		do.Merged = mergedStatus
 	} else {
-		do.Merge = unMergeStatus
+		do.Merged = unMergedStatus
 	}
 }
 
@@ -45,7 +45,7 @@ func (do *SoftwarePkgPRDO) toDomainPullRequest() (pr domain.PullRequest) {
 	pr.Link = do.Link
 	pr.Num = do.Num
 
-	if do.Merge == mergeStatus {
+	if do.Merged == mergedStatus {
 		pr.SetMerged()
 	}
 
