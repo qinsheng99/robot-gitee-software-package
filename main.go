@@ -91,7 +91,7 @@ func main() {
 	}
 
 	// start
-	r := newRobot(c)
+	r := newRobot(c, nil)
 
 	framework.Run(r, o.service)
 }
