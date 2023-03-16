@@ -4,11 +4,16 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/opensourceways/robot-gitee-software-package/softwarepkg/domain"
+	"github.com/opensourceways/robot-gitee-software-package/softwarepkg/domain/repository"
 	"github.com/opensourceways/robot-gitee-software-package/softwarepkg/infrastructure/postgresql"
 )
 
 type softwarePkgPR struct {
 	cli dbClient
+}
+
+func NewSoftwarePkgPR(cfg *Config) repository.PullRequest {
+	return softwarePkgPR{cli: postgresql.NewDBTable(cfg.Table.SoftwarePkgPR)}
 }
 
 func (s softwarePkgPR) Add(p *domain.PullRequest) error {
