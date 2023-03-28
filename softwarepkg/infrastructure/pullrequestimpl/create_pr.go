@@ -86,6 +86,9 @@ func (impl *pullRequestImpl) appendToSigInfo() error {
 }
 
 func (impl *pullRequestImpl) newCreateRepoYaml() error {
+	if len(impl.pkg.Name) == 0 {
+		return errors.New("failed")
+	}
 	subDirName := strings.ToLower(impl.pkg.Name[:1])
 	fileName := fmt.Sprintf("community/sig/%s/src-openeuler/%s/%s.yaml",
 		impl.pkg.Application.ImportingPkgSig, subDirName, impl.pkg.Name)
